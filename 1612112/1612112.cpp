@@ -8,8 +8,14 @@ int main()
 	LINKEDLIST DanhSachThuCung;
 	CreateList(DanhSachThuCung);
 
-	THUCUNG ThuCung;
+	LINKEDLIST DanhSachThuCungTheoTuoiVaMau;
+	CreateList(DanhSachThuCungTheoTuoiVaMau);
+
 	NODE* node = NULL;
+	char* ma = new char[11];
+	unsigned int tuoi;
+	char* mau = new char[51];
+	unsigned int trongLuong;
 
 	bool flag = true;
 	do {
@@ -34,13 +40,41 @@ int main()
 			break;
 		case 2:
 			cout << "THEM 1 THU CUNG" << endl;
-			NhapThuCung(DanhSachThuCung, ThuCung);
+			NhapThuCung(DanhSachThuCung);
+			cout << endl;
 			break;
 		case 3:
+			cout << "BAN THU CUNG" << endl;
+			cout << "Nhap ma thu cung:";
+			cin.getline(ma, 10);
+
+			BanThuCung(DanhSachThuCung, ma);
+
+			cout << endl;
 			break;
 		case 4:
+			cout << "DANH SACH THU CUNG THEO TUOI VA MAU" << endl;
+
+			cout << "Nhap mau thu cung can tim: ";
+			cin.getline(mau, 50);
+			cout << "Nhap tuoi thu cung can tim: ";
+			cin >> tuoi;
+			cin.ignore();
+
+			DeleteList(DanhSachThuCungTheoTuoiVaMau);
+
+			LayDanhSachTheoTuoiVaMau(DanhSachThuCung, DanhSachThuCungTheoTuoiVaMau, tuoi, mau);
+
+			cout << "Danh sach: " << endl;
+			PrintList(DanhSachThuCungTheoTuoiVaMau);
+
+			cout << endl;
 			break;
 		case 5:
+			cout << "Nhap muc trong luong: ";
+			cin >> trongLuong;
+			XoaThuCungTheoTrongLuong(DanhSachThuCung, trongLuong);
+			PrintList(DanhSachThuCung);
 			break;
 		case 6:
 			flag = false;

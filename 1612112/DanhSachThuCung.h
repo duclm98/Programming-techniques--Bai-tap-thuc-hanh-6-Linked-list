@@ -18,7 +18,13 @@ typedef struct list LINKEDLIST;
 NODE* CreateNode(THUCUNG data);
 void CreateList(LINKEDLIST& l);
 void AddTail(LINKEDLIST& l, NODE* node);
+void RemoveHead(LINKEDLIST& l);
 void PrintList(LINKEDLIST l);
+void DeleteList(LINKEDLIST& l);
 
-void NhapThuCung(LINKEDLIST& l, THUCUNG ThuCung);
-THUCUNG* TimKiemTheoMa(LINKEDLIST l, char* ma);
+THUCUNG* TimKiemTheoMa(LINKEDLIST& l, char* ma);
+THUCUNG* TimKiemTheoTuoiVaMau(LINKEDLIST& l, unsigned int tuoi, char* mau);
+void LayDanhSachTheoTuoiVaMau(LINKEDLIST& src, LINKEDLIST& des, unsigned int tuoi, char* mau);
+void NhapThuCung(LINKEDLIST& l);
+void BanThuCung(LINKEDLIST& l, char* ma);
+void XoaThuCungTheoTrongLuong(LINKEDLIST& l, unsigned int trongLuong);
