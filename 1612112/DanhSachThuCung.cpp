@@ -34,11 +34,29 @@ void RemoveHead(LINKEDLIST& l) {
 	}
 }
 
+void RemoveNode(LINKEDLIST& l, NODE* node) {
+	if (l.head != NULL) {
+		if (node == l.head) {
+			l.head = l.head->next;
+			delete node;
+		}
+		else {
+			NODE* prevNode = l.head;
+			while (prevNode->next != node) {
+				prevNode = prevNode->next;
+			}
+			prevNode->next = node->next;
+			delete node;
+		}
+	}
+}
+
 void PrintList(LINKEDLIST l) {
 	if (l.head != NULL) {
 		NODE* node = l.head;
 		int index = 0;
 		while (node != NULL) {
+			cout << "===============================" << endl;
 			cout << "THU CUNG " << ++index << endl;
 			cout << node->data;
 			node = node->next;
@@ -154,10 +172,12 @@ void BanThuCung(LINKEDLIST& l, char* ma) {
 			}
 			else
 			{
+				// Tim node truoc node can xoa
 				NODE* prevNode = l.head;
 				while (prevNode->next != node) {
 					prevNode = prevNode->next;
 				}
+				// Cap nhat lai next cho node truoc do
 				prevNode->next = node->next;
 				node->next = NULL;
 				delete node;				
@@ -171,24 +191,52 @@ void BanThuCung(LINKEDLIST& l, char* ma) {
 
 void XoaThuCungTheoTrongLuong(LINKEDLIST& l, unsigned int trongLuong) {
 	if (l.head != NULL) {
-		NODE* node = l.head;
-		while (node != NULL) {
-			if (node->data.trongLuong > trongLuong) {
-				if (node = l.head) {
-					NODE* temp = l.head;
-					l.head = node->next;
-					delete temp;
-				}
-				else {
-					NODE* prevNode = l.head;
-					while (prevNode->next != node) {
-						prevNode = prevNode->next;
-					}
-					prevNode->next = node->next;
+		char confirm = 'n';
+		cout << "Xac nhan xoa thu cung (y/n):";
+		cin >> confirm;
+		cin.ignore();
+		if (confirm == 'y' || confirm == 'Y') {
+			if (l.head == l.tail) {
+				if (l.head->data.trongLuong > trongLuong) {
+					NODE* node = l.head;
+					l.head = l.tail = NULL;
 					delete node;
+					cout << "Xoa thu cung thanh cong" << endl;
+					return;
 				}
 			}
-			node = node->next;
+			else {
+				NODE* node = l.head;
+				while (node != NULL) {
+					if (node->data.trongLuong > trongLuong) {
+						NODE* del = NULL;
+						if (node == l.head) {
+							l.head = l.head->next;
+							del = node;
+							node = node->next;
+							l.head = node;
+							delete del;
+						}
+						else {
+							// Tim node truoc node can xoa
+							NODE* prevNode = l.head;
+							while (prevNode->next != node) {
+								prevNode = prevNode->next;
+							}
+							// Cap nhat lai next cho node truoc do
+							prevNode->next = node->next;
+							del = node;
+							node = node->next;
+							delete del;
+						}
+						cout << "Xoa thu cung thanh cong" << endl;
+					}
+					else
+					{
+						node = node->next;
+					}
+				}
+			}
 		}
 	}
 }

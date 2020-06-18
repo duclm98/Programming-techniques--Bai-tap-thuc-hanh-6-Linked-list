@@ -71,9 +71,10 @@ int main()
 			cout << endl;
 			break;
 		case 5:
-			cout << "Nhap muc trong luong: ";
+			cout << "Nhap muc trong luong (thu cung nao co trong luong lon hon muc nay se bi xoa): ";
 			cin >> trongLuong;
 			XoaThuCungTheoTrongLuong(DanhSachThuCung, trongLuong);
+			cout << "DANH SACH THU CUNG CON LAI" << endl;
 			PrintList(DanhSachThuCung);
 			break;
 		case 6:

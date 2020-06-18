@@ -19,6 +19,7 @@ NODE* CreateNode(THUCUNG data);
 void CreateList(LINKEDLIST& l);
 void AddTail(LINKEDLIST& l, NODE* node);
 void RemoveHead(LINKEDLIST& l);
+void RemoveNode(LINKEDLIST& l, NODE* node);
 void PrintList(LINKEDLIST l);
 void DeleteList(LINKEDLIST& l);
 
